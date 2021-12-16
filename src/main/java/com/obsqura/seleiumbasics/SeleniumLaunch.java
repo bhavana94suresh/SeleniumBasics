@@ -20,15 +20,34 @@ public class SeleniumLaunch {
         } else if (browser.equals("Firefox")) {
             System.setProperty("webdriver.gecko.driver", "C:\\bhavana\\seleniumDriver\\geckodriver.exe");
             driver = new FirefoxDriver();
-        } else {
+        } else if(browser.equals("ie")){
             System.setProperty("webdriver.ie.driver", "C:\\bhavana\\seleniumDriver\\IEDriverServer.exe");
             driver = new InternetExplorerDriver();
         }
+        else{
+            try {
+                throw new Exception("Invalid browser");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
     }
     public static void main(String args[]) {
         testIntialise("Chrome");
-        testIntialise("Edge");
-        testIntialise("Firefox");
-        testIntialise("ie");
+        driver.get("http://demowebshop.tricentis.com/");
+        String actualTitle = driver.getTitle();
+       // System.out.println(actualTitle);
+       String currentUrl= driver.getCurrentUrl();
+      // System.out.println(currentUrl);
+       String pageSource=driver.getPageSource();
+        System.out.println(pageSource);
+
+
+        driver.close();
+        //testIntialise("Edge");
+       // testIntialise("Firefox");
+       // testIntialise("mm");
     }
 }

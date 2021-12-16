@@ -33,7 +33,7 @@ public class SeleniumPractice {
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
     }
-        public static void main (String args[]){
+        public static void main (String[] args){
             testIntialise("Chrome");
             driver.get("http://demo.guru99.com/test/newtours/");
            String actualTitle= driver.getTitle();
