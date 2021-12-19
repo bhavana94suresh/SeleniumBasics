@@ -1,8 +1,7 @@
-package com.obsqura.seleiumbasics;
+package com.obsqura.Homework;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-//import port org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -11,8 +10,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import java.util.List;
 
-
-public class SeleniumLaunch {
+public class HomeWork3 {
     static WebDriver driver;
 
     public static void testIntialise(String browser) {
@@ -39,43 +37,31 @@ public class SeleniumLaunch {
         driver.manage().deleteAllCookies();
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         testIntialise("Chrome");
-        driver.get("http://demowebshop.tricentis.com/login");
-        //  String actualTitle = driver.getTitle();
-        // System.out.println(actualTitle);
-        // String currentUrl= driver.getCurrentUrl();
-        // System.out.println(currentUrl);
-        //  String pageSource=driver.getPageSource();
-        //   System.out.println(pageSource);
-       WebElement userName=driver.findElement(By.id("Email"));
-        WebElement userName1=driver.findElement(By.name("Email"));
-        WebElement userName2=driver.findElement(By.className("email"));
-        WebElement userName3=driver.findElement(By.xpath("//*[@id=\"Email\"]"));
-        WebElement userName4=driver.findElement(By.cssSelector("#Email"));
-        System.out.println(userName);
-        System.out.println(userName1);
-        System.out.println(userName2);
-        System.out.println(userName4);
-        System.out.println(userName3);
-        WebElement userName5=driver.findElement(By.linkText("Log in"));
-        WebElement userName6=driver.findElement(By.partialLinkText("Log"));
-        System.out.println(userName5);
-        System.out.println(userName6);
-        List<WebElement> tag=driver.findElements(By.tagName("input"));
-        System.out.println(tag.size());
-
-
-
-
-
-
-
-
-
+        driver.get("http://demowebshop.tricentis.com/shipping-returns");
+        String actualTitle = driver.getTitle();
+        System.out.println(actualTitle);
+        String currentUrl = driver.getCurrentUrl();
+        System.out.println(currentUrl);
+        String pagrSource = driver.getPageSource();
+        //  System.out.println(pagrSource);
+        WebElement name = driver.findElement(By.name("NewsletterEmail"));
+       // WebElement name1 = driver.findElement(By.className("inputs"));
+        WebElement name2 = driver.findElement(By.id("newsletter-email"));
+        WebElement name3 = driver.findElement(By.cssSelector("#newsletter-email"));
+        WebElement name4 = driver.findElement(By.xpath("//*[@id=\"newsletter-email\"]"));
+        WebElement name5 = driver.findElement(By.linkText("Shopping cart"));
+        WebElement name6 = driver.findElement(By.partialLinkText("Shopping"));
+        List<WebElement> name7 = driver.findElements(By.tagName("div"));
+        System.out.println(name);
+        //System.out.println(name1);
+        System.out.println(name2);
+        System.out.println(name3);
+        System.out.println(name4);
+        System.out.println(name5);
+        System.out.println(name6);
+        System.out.println(name7.size());
         driver.close();
-        //testIntialise("Edge");
-        // testIntialise("Firefox");
-        // testIntialise("mm");
     }
 }
