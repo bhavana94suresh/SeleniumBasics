@@ -50,9 +50,39 @@ public class SeleniumCommands {
     public void verifyLogin(){
         driver.get("http://demowebshop.tricentis.com/register");
 
-        WebElement login= driver.findElement(By.className("ico-login"));
+        WebElement login= driver.findElement(By.xpath("//a[@class='ico-login']"));
+        login.click();
         WebElement userName=driver.findElement(By.id("Email"));
+        userName.sendKeys("bhavana123456@gamil.com");
         WebElement password=driver.findElement(By.xpath("//input[@id='Password']"));
+        WebElement loginbutton=driver.findElement(By.xpath("//input[@value='Log in']"));
+        String loginb= loginbutton.getAttribute("value");
+        System.out.println(loginb);
+    }
+    @Test(priority=2)
+    public void register()
+    {
+        driver.get("http://demowebshop.tricentis.com/register");
+        WebElement registerb=driver.findElement(By.className("ico-register"));
+        registerb.click();
+        WebElement gender=driver.findElement(By.xpath("//input[@name='Gender']"));
+        WebElement female=driver.findElement(By.xpath("//input[@id='gender-female']"));
+        female.click();
+        WebElement firstName=driver.findElement(By.id("FirstName"));
+        firstName.sendKeys("diyaa");
+        WebElement lastName=driver.findElement(By.id("LastName"));
+        lastName.sendKeys("sreejithh");
+        WebElement registerEmail=driver.findElement(By.id("Email"));
+        registerEmail.sendKeys("diyasree1456@gmail.com");
+        WebElement registerPassword=driver.findElement(By.xpath("//input[@id='Password']"));
+        registerPassword.sendKeys("diyasree1234");
+        WebElement reconfirmPassword=driver.findElement(By.xpath("//input[@id='ConfirmPassword']"));
+        reconfirmPassword.sendKeys("diyasree1234");
+        WebElement register1=driver.findElement(By.id("register-button"));
+        register1.click();
+        WebElement registerMessage=driver.findElement(By.xpath("//div[@class='result']"));
+        String message= registerMessage.getText();
+        System.out.println(message);
 
     }
 }
