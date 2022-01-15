@@ -58,7 +58,7 @@ public class SeleniumLaunch {
         System.out.println(userName2);
         System.out.println(userName4);
         System.out.println(userName3);
-        WebElement userName5=driver.findElement(By.linkText("Log in"));
+       WebElement userName5=driver.findElement(By.linkText("Log in"));
         WebElement userName6=driver.findElement(By.partialLinkText("Log"));
         System.out.println(userName5);
         System.out.println(userName6);
