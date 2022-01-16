@@ -6,6 +6,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -179,11 +180,13 @@ public class SeleniumCommands {
         expDropDownValues.add("AMERICAN SAMOA");
         List<WebElement> dropDownObjects=select.getOptions();
         List<String> actDropDownValues=new ArrayList<>();
-        for(int i=0;i<dropDownObjects.size();i++){
+        for(int i=0;i<dropDownObjects.size();i++)
+        {
             actDropDownValues.add(dropDownObjects.get(i).getText());
         }
         System.out.println(actDropDownValues.size());
         System.out.println(actDropDownValues);
+
     }
 
    @Test(priority=7)

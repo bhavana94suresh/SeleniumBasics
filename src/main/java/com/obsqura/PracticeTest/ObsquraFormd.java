@@ -7,10 +7,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ObsquraFormd {
@@ -87,45 +90,70 @@ public class ObsquraFormd {
         List<WebElement> checkbox2 = driver.findElements(By.xpath("//input[@class='check-box-list']/following-sibling::label"));
         for (int i = 0; i < checkbox2.size(); i++) {
             String val = checkbox2.get(i).getText();
-            if(val.equals(option1)){
+            if (val.equals(option1)) {
                 checkbox2.get(i).click();
             }
-            if (val.equals(option2)){
+            if (val.equals(option2)) {
                 checkbox2.get(i).click();
             }
         }
     }
-            @Test(priority = 3)
-            public void selectRadioButton ()
-            {
-                driver.get("https://selenium.obsqurazone.com/radio-button-demo.php");
-                WebElement radioDemo1 = driver.findElement(By.id("inlineRadio1"));
-                WebElement radioDemo2 = driver.findElement(By.id("inlineRadio2"));
-                radioDemo2.click();
-                System.out.println(radioDemo1.isSelected());
-                System.out.println(radioDemo2.isSelected());
-                WebElement showValue = driver.findElement(By.id("button-one"));
-                showValue.click();
-                WebElement radioDemoMessage = driver.findElement(By.xpath("//div[@id='message-one']"));
-                String message1 = radioDemoMessage.getText();
-                System.out.println(message1);
-               groupRadioButton("Female");
-               groupRadioButton("19 t0 44");
 
+    @Test(priority = 3)
+    public void selectRadioButton() {
+        driver.get("https://selenium.obsqurazone.com/radio-button-demo.php");
+        WebElement radioDemo1 = driver.findElement(By.id("inlineRadio1"));
+        WebElement radioDemo2 = driver.findElement(By.id("inlineRadio2"));
+        radioDemo2.click();
+        System.out.println(radioDemo1.isSelected());
+        System.out.println(radioDemo2.isSelected());
+        WebElement showValue = driver.findElement(By.id("button-one"));
+        showValue.click();
+        WebElement radioDemoMessage = driver.findElement(By.xpath("//div[@id='message-one']"));
+        String message1 = radioDemoMessage.getText();
+        System.out.println(message1);
+        groupRadioButton("Female");
+        groupRadioButton("19 t0 44");
+
+
+    }
+
+    public void groupRadioButton(String selection) {
+        List<WebElement> radio = driver.findElements(By.xpath("//input[@type='radio']/following-sibling::label"));
+        for (int i = 0; i < radio.size(); i++) {
+            String value = radio.get(i).getText();
+            if (value.equals(selection)) {
+                radio.get(i).click();
 
             }
-            public void groupRadioButton(String selection)
-            {
-                List<WebElement>radio=driver.findElements(By.xpath("//input[@type='radio']/following-sibling::label"));
-                for (int i=0;i< radio.size();i++)
-                {
-                    String value=radio.get(i).getText();
-                    if(value.equals(selection))
-                    {
-                        radio.get(i).click();
+        }
+    }
 
-                    }
+    @Test(priority = 4)
+    public void verifyDropDown() {
+        driver.get("https://demo.guru99.com/selenium/newtours/register.php");
+        WebElement dropDownElmnt = driver.findElement(By.xpath("//select[@name='country' and @size='1']"));
+        Select dropDownSelect = new Select(dropDownElmnt);
+
+        //expected dropdown
+        List<String> expDropDwn = new ArrayList<>();
+        expDropDwn.add("ALBANIA");
+        expDropDwn.add("ALGERIA");
+        expDropDwn.add("AMERICAN SAMOA");
+
+        List<WebElement> dropDownSelectOptions = dropDownSelect.getOptions();
+        List<String> actDropDown = new ArrayList<>();
+        for (int i = 0; i < dropDownSelectOptions.size(); i++) {
+            actDropDown.add(dropDownSelectOptions.get(i).getText());
+        }
+        for(int a=0;a<expDropDwn.size();a++){
+            for (int b=0;b<actDropDown.size();b++){
+                if(a==b){
+                    Assert.assertEquals(actDropDown.get(a),expDropDwn.get(b),"ERROR::Invalid value");
+                    System.out.println(expDropDwn);
+                    System.out.println(actDropDown);
                 }
             }
         }
-
+    }
+}
